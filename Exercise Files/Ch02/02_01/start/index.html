@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" crossorigin></script>
+  <title>React ⚛️</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+
+  <script type="text/babel">
+
+    const dishes = [
+      "Macaroni and Cheese",
+      "Salmon",
+      "Tofu with Vegetables"
+    ];
+
+    const dishesObject = dishes.map((dish, i) => ({id: i, title: dish}));
+
+
+    function Header(props) {
+      return (
+        <header>
+          <h1>{props.name} Kitchen</h1>
+        </header>
+      );
+    }
+    function Main(props) {
+      return (
+        <section>
+          <img height={200} src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Serving a delicious meal"></img>
+          <ul>
+            {props.dishes.map((dish) => (
+              <li key={dish.id}>{dish.title}</li>
+            ))}
+          </ul>
+        </section>
+      );
+    }
+
+    function Footer(props) {
+      return (
+        <footer>
+          <p>Coppyright {props.year}</p>
+        </footer>
+      )
+    }
+
+    function App() {
+      return (
+        <React.Fragment>
+          <Header name="Moroni" />
+          <Main adjective="dope" 
+          dishes={dishesObject} 
+          />
+          <Footer year={new Date().getFullYear()} />
+        </React.Fragment>
+      )
+    }
+
+    ReactDOM.render(
+      <App />,
+      document.getElementById("root")
+    );
+  </script>
+</body>
+
+</html>
